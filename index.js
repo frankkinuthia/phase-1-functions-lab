@@ -19,17 +19,18 @@ const distanceTravelledInFeet = (start, destination) => {
 
 
 const calculatesFarePrice = (start, destination) => {
-    let pricing = distanceTravelledInFeet(start, destination);
-    if(pricing <= 400) {
-        return 0;
-	} else if(pricing > 400 && pricing < 2000) {
+	let pricing = distanceTravelledInFeet(start, destination);
+	switch(true) {
+	  case pricing <= 400:
+		return 0;
+	  case pricing > 400 && pricing < 2000:
 		return 2.56;
+	  case pricing > 2000:
+		switch(true) {
+		  case pricing > 2500:
+			return `cannot travel that far`;
+		  default:
+			return 25;
+		}
 	}
-	else if (pricing > 2000) {
-		if(pricing > 2500) {
-            return `cannot travel that far`;
-        }
-        return 25;
-    }
 }
-
